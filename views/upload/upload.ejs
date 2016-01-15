@@ -1,0 +1,10 @@
+<%- include('../partials/head.ejs') %>
+<form action="/upload", method="post" enctype="multipart/form-data">
+    <label>
+        Upload een leuke foto!
+        <br />
+        <input type="file" name="files"/>
+        <input type="submit" name="Uploaden" value="Uploaden" />
+    </label>
+</form>
+<%- include('../partials/foot.ejs') %>

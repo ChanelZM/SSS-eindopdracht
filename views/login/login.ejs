@@ -1,0 +1,16 @@
+<%- include('../partials/head.ejs') %>
+
+<h1>Log hier in</h1>
+<form action="/login" method="post">
+   <label>
+      Gebruikersnaam
+       <input type="text" name="username" placeholder="Voer hier je gebruikersnaam in" />
+   </label>
+   <label>
+      Wachtwoord
+       <input type="password" name="password" placeholder="Voer hier je wachtwoord in" />
+   </label>
+   <input type="submit" value="Inloggen" />
+</form>
+
+<%- include('../partials/foot.ejs') %>
