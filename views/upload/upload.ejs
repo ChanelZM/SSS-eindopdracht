@@ -1,10 +1,17 @@
 <%- include('../partials/head.ejs') %>
-<form action="/upload", method="post" enctype="multipart/form-data">
-    <label>
-        Upload een leuke foto!
-        <br />
-        <input type="file" name="files"/>
-        <input type="submit" name="Uploaden" value="Uploaden" />
-    </label>
-</form>
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <link rel="stylesheet" href="/style/style.css" />
+</head>
+<main>
+<h2>
+    Posts
+</h2>
+<p><%for(var i=0; i< photo.length; i++){ %>
+<img src="../<%= 'upload/' + photo[i]%>" />
+<br />
+<%}%>
+</p>
+</main>
 <%- include('../partials/foot.ejs') %>

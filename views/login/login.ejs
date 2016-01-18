@@ -1,6 +1,11 @@
 <%- include('../partials/head.ejs') %>
-
-<h1>Log hier in</h1>
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <link rel="stylesheet" href="/style/style.css" />
+</head>
+<main>
+<h2>Log hier in</h2>
 <form action="/login" method="post">
    <label>
       Gebruikersnaam
@@ -12,5 +17,5 @@
    </label>
    <input type="submit" value="Inloggen" />
 </form>
-
+</main>
 <%- include('../partials/foot.ejs') %>

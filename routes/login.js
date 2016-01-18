@@ -2,37 +2,28 @@ var express = require('express');
 var session = require('express-session');
 
 var router = express.Router();
-//var users = require('../data/users');
 
-router.get('/', function (req, res) {
-    res.render('login/login.ejs');
+router.get('/', function(req, res){                                 //Vraagt de gebruiker de login aan
+    if (req.session && req.session.username === 'Chanel'){
+        res.render('Error/loggedin');
+    } else {
+        res.render('login/login');                                      //Geef dan dit bestand weer
+    }
 });
 
-router.post('/', function (req, res) {
-    console.log(req.body);
-//    res.locals.users = users;
-//    res.send('Welkom ' + req.body.username);
-//    for(var i=0; i < users.length; i++){
-//        console.log(users.length);
-//    if ((req.body.username == users[i].username) && (req.body.password == users[i].password)) {
-//        res.send('Welkom ' + req.body.username);
-//    } else if ((req.body.username == users[i].username) || (req.body.password == users[i].password)) {
-//        res.send('Oeps! je wachtwoord of gebruikersnaam is fout!');
-//    } else {
-//        res.redirect('/login');
-//    }
-//
-    if ((req.body.username == 'Chanel') && (req.body.password == 'jemoeder')) {
-        req.session.username = 'Chanel';
-        req.session.admin = true;
-        res.locals.username = req.body.username;
-        res.render('content/home');
-        console.log('Inlog oke', req.session);
-   } else if ((req.body.username == 'Chanel') || (req.body.password == 'jemoeder')) {
-       res.render('Error/loginerror');
-    } else {
-        res.render('Error/nouser');
+router.post('/', function (req, res) {                              //Als de gebruiker op submit klikt
+    console.log(req.body);                                          //Geef wat is ingevoerd weer in de console
+    if ((req.body.username == 'Chanel') && (req.body.password == 'chanelchanel')) { //Als de ingevulde gebruikersnaam en wachtwoord matchen
+        req.session.username = 'Chanel';                            //Is de gebruikersnaam sessie Chanel
+        req.session.admin = true;                                   //Ben je de admin
+        res.locals.username = req.body.username;                    //Om de gebruikersnaam in het ejs bestand te gebruiken.
+        res.render('content/home');                                 //Geef dit bestand weer
+        console.log('Inlog oke', req.session);                      //Geef dit en de sessie gegevens weer in de console
+    } else if ((req.body.username == 'Chanel') || (req.body.password == 'chanelchanel')) {//Als een van de twee niet kloppen
+        res.render('Error/loginerror');                             //Render dan dit bestand
+    } else {                                                        //Anders
+        res.render('Error/nouser');                                 //Render dan dit bestand
     }
-    });
+});
 
-module.exports = router; //Geef deze router terug aan app.js
+module.exports = router;                                            //Geef deze router terug aan app.js

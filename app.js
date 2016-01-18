@@ -7,7 +7,6 @@ var multer = require('multer');                             //Zodat het verwerke
 var mysql = require('mysql');                               //Zodat je query's in sql kunt opstellen
 var myConnection = require('express-myconnection');         //Zodat je gegevens uit de database kann halen en er weer in stoppen.
 
-var upload = multer({dest:'public/upload/'});
 
 var homeRouter = require('./routes/home');                  //Stop de route naar ./routes/home in deze variabele
 var loginRouter = require('./routes/login');                //Stop de route naar ./routes/login in deze variabele
@@ -20,7 +19,7 @@ var auth = function(req, res, next){                        //De functie voor he
         return next();                                      //Ga dan verder met het volgende codeblok
     }
     else {                                                  //Zo niet
-        return res.sendStatus(401);                         //Stuur een error
+        res.render('./login/login');                         //Stuur een error
     }
 };
 
@@ -31,10 +30,9 @@ app.use(myConnection(mysql, {
     host: 'localhost',
     user: 'student',
     password: 'serverSide',
-    port: 3000,
+    port: 3306,
     database: 'student'
 }, 'single'));
-
 
 //De settings voor de view engine
 app.set('views', path.join(__dirname, 'views'));            //De directory name staat gelijk aan de request van de browser. De views is wat de server
@@ -52,7 +50,7 @@ app.use(bodyParser.urlencoded({extended:true}));            //Dit vertelt dat al
 
 app.use(session({                                           //Eigenschappen van de sessie Middleware
     secret: 'DitIsGeheim',
-    resave: true,                                           //Cookie waardes aanhouden.
+    resave: false,
     saveUninitialized: true
 }));
 
@@ -65,10 +63,13 @@ app.use('/logout', logoutRouter)                            //App, als de gebrui
 app.use('/upload', uploadRouter)                            //App, als de gebruiker naar upload wilt, gebruik dan de route in de volgende variabele
 
 app.get('/content', auth, function(req, res){               //Als de gebruiker naar /content wilt, voer eerst dan de functie uit in de variabele auth
-    res.render('./content/home')                                      //Als deze klopt stuur dan dit naar de gebruiker.
+    req.session.username = 'Chanel';                            //Is de gebruikersnaam sessie Chanel
+    req.session.admin = true;                                   //Ben je de admin
+    res.locals.username = req.session.username;                    //Om de gebruikersnaam in het ejs bestand te gebruiken.
+    res.render('./content/home')                            //Als deze klopt stuur dan dit naar de gebruiker.
 });
 
 
-app.listen(3000, function () {
-    console.log("Running at port 3000")
+app.listen(3000, function () {                              //App draait op poort 3000
+    console.log("Running at port 3000")                     //Geef dit weer in de console als ie draait.
 });

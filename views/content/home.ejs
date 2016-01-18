@@ -1,6 +1,18 @@
 <%- include('../partials/head.ejs') %>
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <link rel="stylesheet" href="/style/style.css" />
+</head>
 <h2>
     Welkom <%= username %>
 </h2>
-<a href="/upload">Upload een foto</a>
+<form action="/upload", method="post" enctype="multipart/form-data">
+    <label>
+        Upload een leuke foto!
+        <br />
+        <input type="file" name="files"/>
+        <input type="submit" name="Uploaden" value="Uploaden" />
+    </label>
+</form>
 <%- include('../partials/foot.ejs') %>
