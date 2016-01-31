@@ -1,0 +1,26 @@
+<%- include('../partials/head.ejs') %>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>App</title>
+        <link rel="stylesheet" href="/style/style.css" />
+    </head>
+    <main>
+        <img src="../upload/<%= photo.filename %>" />
+        <form action="/uploads/<%= photo.filename %>" , method="post" enctype="multipart/form-data">
+            <label>
+                <% for(var i=0; i<comment.length; i++) { %>
+                    <p class="comments">
+                        <%= comment[i].comment %>
+                    </p>
+                    <br />
+                    <% } %>
+                        Laat een reactie achter!
+                        <br />
+                        <input type="text" name="comment" />
+                        <br />
+                        <input type="submit" name="reageer" value="reageer" />
+            </label>
+        </form>
+    </main>
+    <%- include('../partials/foot.ejs') %>

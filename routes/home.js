@@ -5,9 +5,8 @@ var router = express.Router();
 
 router.get('/', function (req, res, next) {
     fs.readdir('public/upload', function (err, files) {
-        if (err) throw err;
         res.locals.photo = files;
-        res.render('upload/upload', {
+        res.render('uploads/upload', {
             title: 'Uploads'
         });
     });

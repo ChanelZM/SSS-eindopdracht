@@ -15,7 +15,7 @@ var uploadRouter = require('./routes/upload');              //Stop de route naar
 
 var auth = function(req, res, next){                        //De functie voor het authenticeren van de gebruiker die is ingelogd.
     console.log(req.session);                               //Laat zien of er een sessie is.
-    if(req.session && req.session.username === 'Chanel') {  //Als er een sessie is en de gebruikersnaam van deze gebruiker is Chanel
+    if(req.session.username) {  //Als er een sessie is en de gebruikersnaam van deze gebruiker is Chanel
         return next();                                      //Ga dan verder met het volgende codeblok
     }
     else {                                                  //Zo niet
@@ -60,10 +60,9 @@ app.use(session({                                           //Eigenschappen van 
 app.use('/', homeRouter)                                    //App, als de gebruiker naar de root wilt, gebruik dan de route in de volgende variabele
 app.use('/login', loginRouter)                              //App, als de gebruiker naar de login wilt, gebruik dan de route in de volgende variabele
 app.use('/logout', logoutRouter)                            //App, als de gebruiker naar de logout wilt, gebruik dan de route in de volgende variabele
-app.use('/upload', uploadRouter)                            //App, als de gebruiker naar upload wilt, gebruik dan de route in de volgende variabele
+app.use('/uploads', uploadRouter)                            //App, als de gebruiker naar upload wilt, gebruik dan de route in de volgende variabele
 
 app.get('/content', auth, function(req, res){               //Als de gebruiker naar /content wilt, voer eerst dan de functie uit in de variabele auth
-    req.session.username = 'Chanel';                            //Is de gebruikersnaam sessie Chanel
     req.session.admin = true;                                   //Ben je de admin
     res.locals.username = req.session.username;                    //Om de gebruikersnaam in het ejs bestand te gebruiken.
     res.render('./content/home')                            //Als deze klopt stuur dan dit naar de gebruiker.

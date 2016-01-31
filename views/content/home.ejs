@@ -1,4 +1,5 @@
 <%- include('../partials/head.ejs') %>
+<main>
 <head>
     <meta charset="UTF-8">
     <title>App</title>
@@ -7,7 +8,7 @@
 <h2>
     Welkom <%= username %>
 </h2>
-<form action="/upload", method="post" enctype="multipart/form-data">
+<form action="/uploads", method="post" enctype="multipart/form-data">
     <label>
         Upload een leuke foto!
         <br />
@@ -15,4 +16,5 @@
         <input type="submit" name="Uploaden" value="Uploaden" />
     </label>
 </form>
+</main>
 <%- include('../partials/foot.ejs') %>

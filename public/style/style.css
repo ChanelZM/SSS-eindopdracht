@@ -1,23 +1,49 @@
+@font-face {
+    font-family: 'The Constellation of Heracles';
+    src: url('tcoh.ttf');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('OpenSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'sawad';
+    src: url('sawad.ttf');
+}
+
 body {
     background-image:url('grass-in-sunset.jpg');
     background-size: 100vw;
     background-attachment: fixed;
     background-repeat: no-repeat;
     text-align: center;
+    font-family: 'Open Sans', sans-serif;
 }
 
 h1 {
-    font-family: 'The Constellation of Heracles', serif;
-    src: url('tcoh.ttf');
-    font-size: 12em;
+    font-family: 'sawad', serif;
+    font-size: 8em;
     line-height: 0;
+    padding-top: 2rem;
+    color: #223c4a;
+}
+
+h2 {
+    font-family: 'sawad', sans-serif;
+    font-size: 3em;
+    color: #223c4a;
 }
 
 main, header {
-    padding: 2rem;
     margin-left: 20%;
     margin-right: 20%;
+}
+
+main {
     background-color: rgba(255, 255, 255, 0.7);
+    padding: 2rem;
 }
 
 header {
@@ -27,6 +53,34 @@ header {
 main img {
     width: 30vw;
 }
+nav {
+    background-color: #ff784e;
+    -webkit-box-shadow: inset 0px 30px 20px #ff5050;
+    -ms-box-shadow: inset 0px 30px 20px #ff5050;
+    box-shadow: inset 0px 30px 20px #ff5050;
+    margin-top: 8rem;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 nav li {
+    padding: 0.4rem;
     list-style: none;
+}
+
+nav a {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+nav a:visited {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    color: white;
+
 }
